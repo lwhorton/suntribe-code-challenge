@@ -46,6 +46,11 @@
                      #{week1}
                      #{week2 week3}))))
 
+(deftest example-from-readme
+  (is (= #{#st/local-date-range "2024-01-02/P6D" #st/local-date-range "2024-01-15/P17D"}
+         (difference #{month0}
+                     #{week1 #st/local-date-range "2024-01-01/P1D"}))))
+
 (deftest performance
   (is (= #{#st/local-date-range "2020-01-01/P4Y" #st/local-date-range "2024-01-05/P5Y11M27D"}
          (difference #{#st/local-date-range "2020-01-01/P10Y"}
