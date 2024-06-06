@@ -1,13 +1,20 @@
 ### The Sun Tribe Code Challenge
 You are challenged to implement a date-interval difference function.  The arguments to the function `difference` will be clojure sets, each
 of which contains zero or more [LocalDateRange](https://www.threeten.org/threeten-extra/apidocs/org.threeten.extra/org/threeten/extra/LocalDateRange.html)
-objects.  The function must return a set of LocalDateRange objects that represent the [interval difference](http://mathinschool.com/page/8.html) of the 
-first set and all additional sets of the input.  This English sentence represents an example of the operation:
+objects.  The function must return a set of LocalDateRange objects that represents the [interval difference](http://mathinschool.com/page/8.html) of the 
+first set and all additional input sets.
 
-"Remove the second week in January and New Years Day from the month of January 2024."
+For example, given the a set containing the single data range representing the month of January 2024 and a second set containing a date range
+representing the second week of January 2024 and a date range representing the single day of New Year's Day 2024, the function should return
+the set with two intervals, one representing the date range January 2-7, 2024 and the other representing the date range January 15-31, 2024. 
+Stated using algebraic symbols and leveraging the ISO representation of date intervals:
+
+```
+#{"2024-01-01/P1M"} - #{"2024-08-01/P7D" "2024-01-01/P1D"} = #{"2024-01-02/P6D" "2024-01-15/P17D"}`
+```
 
 ### Context
-At Sun Tribe Trading we gather the energy production of solar generators from various sources (typically APIs from the manufacturers
+At Sun Tribe Trading we gather the energy production data of solar generators from various sources (typically APIs from the manufacturers
 of solar energy equipment) and submit the data to regulatory authorities.  It's important that we accurately determine the energy data we need
 to gather based on the data we already have on hand and the current reporting period.  Date interval operations are central to this
 computation.
@@ -38,7 +45,7 @@ Our solution evolved from the observation that a LocalDateRange object can be re
 input into a set difference operation, but the result must be "compressed" back into the minimal set of LocalDateRange 
 objects.
 
-The `LocalDateRange` class has some useful methods (class and instance).
+The `LocalDateRange` class has useful class and instance methods.
 
 Before coding, you should be comfortable with the concept of a [time interval](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals), and
 more specifically a (local) date interval as implemented by
