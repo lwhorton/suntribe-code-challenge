@@ -1,0 +1,8 @@
+{:deps    {org.clojure/clojure         {:mvn/version "1.11.2"}
+           org.threeten/threeten-extra {:mvn/version "1.8.0"}}
+ :paths   ["src"]
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {com.cognitect/test-runner      {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                               :git/sha "dfb30dd"
+                                                               :git/tag "v0.5.1"}}
+                  :exec-fn    cognitect.test-runner.api/test}}}
