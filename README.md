@@ -4,9 +4,9 @@ of which contains zero or more [LocalDateRange](https://www.threeten.org/threete
 objects.  The function must return a set of LocalDateRange objects that represents the [interval difference](http://mathinschool.com/page/8.html) of the 
 first set and all additional input sets.
 
-For example, given the a set containing the single data range representing the month of January 2024 and a second set containing a date range
+For example, given a set containing the single data range representing the month of January 2024 and a second set containing a date range
 representing the second week of January 2024 and a date range representing the single day of New Year's Day 2024, the function should return
-the set with two intervals, one representing the date range January 2-7, 2024 and the other representing the date range January 15-31, 2024. 
+a set with two intervals, one representing the date range January 2-7, 2024 and the other representing the date range January 15-31, 2024. 
 Stated using algebraic symbols and leveraging the ISO representation of date intervals:
 
 ```
