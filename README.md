@@ -33,14 +33,15 @@ Readability will be evaluated by your potential future colleagues looking at the
 
 You may organize the code of your implementation in any way you deem appropriate, but you must not modify the `challenge-test` namespace.
 You may add additional tests in separate namespaces.  You may introduce additional dependencies and make other modifications to the
-`deps.edn` file, but you must not modify the `:test` alias.
+`deps.edn` file, but you must not modify the `:test` alias.  Either hard-won Clojure-only solutions or solutions applying external
+libraries to do the heavy lifting are appropriate.
 
 ### Scale of the Challenge
 A performance-optimized solution to the problem is difficult.  We have implemented a correct solution in less than fifty lines of 
 documented Clojure code with no additional dependencies but leveraging many capabilities of the underlying `org.threeten.extra/LocalDateRange`
 class.  It takes about 15 seconds to complete the test suite on a 2023 MacBook Pro with an Apple M2 Pro processor and 32G of RAM.  We have
-also implemented an efficient solution in less then seventy lines of documented Clojure code with no additional dependencies.  It takes
-about two seconds to complete the test suite on the same machine; most of that time is spent loading Clojure itself.
+also implemented an efficient solution in less than one hundred lines of documented Clojure code with no additional dependencies.  It takes
+about two seconds to complete the test suite on the same machine and most of that time is spent loading Clojure itself.
 
 ### Hints, maybe helpful
 Our simple solution evolved from the observation that a LocalDateRange object can be represented (inefficiently) by a sequence of 
