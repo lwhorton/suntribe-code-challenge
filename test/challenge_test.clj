@@ -1,7 +1,8 @@
 (ns challenge-test
   (:require [challenge.core :refer [difference]]
             [challenge.readers]
-            [clojure.test :refer [deftest is testing]]))
+            [clojure.test :refer [deftest is testing]])
+  (:import (org.threeten.extra LocalDateRange)))
 
 (def week0 #st/local-date-range "2024-01-01/P7D")
 (def week1 #st/local-date-range "2024-01-08/P7D")
@@ -55,3 +56,8 @@
   (is (= #{#st/local-date-range "2020-01-01/P4Y" #st/local-date-range "2024-01-05/P5Y11M27D"}
          (difference #{#st/local-date-range "2020-01-01/P10Y"}
                      #{#st/local-date-range "2024-01-01/P4D"}))))
+
+#_(deftest bonus-unbounded
+    (let [U (LocalDateRange/ofUnbounded)]
+      (is (= #{week1}
+             (difference #{U} (difference #{U} #{week1}))))))
