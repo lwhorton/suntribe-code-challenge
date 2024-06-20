@@ -1,8 +1,25 @@
 {:deps    {org.clojure/clojure         {:mvn/version "1.11.2"}
            org.threeten/threeten-extra {:mvn/version "1.8.0"}}
+
  :paths   ["src"]
- :aliases {:test {:extra-paths ["test"]
+ :aliases {:dev {:extra-paths ["dev" "test"]
+                 :extra-deps {cider/cider-nrepl {:mvn/version "0.49.0"}
+                              djblue/portal {:mvn/version "0.56.0"}
+                              criterium/criterium {:mvn/version "0.4.6"}}
+
+                 :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware,portal.nrepl/wrap-portal]"]}
+           :test {:extra-paths ["test"]
                   :extra-deps {com.cognitect/test-runner      {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                                :git/sha "dfb30dd"
                                                                :git/tag "v0.5.1"}}
-                  :exec-fn    cognitect.test-runner.api/test}}}
+                  :exec-fn    cognitect.test-runner.api/test
+                  :exec-args {:nses [challenge-test]}}
+
+           :performance  {:extra-paths ["test"]
+                          :extra-deps {com.cognitect/test-runner      {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                                       :git/sha "dfb30dd"
+                                                                       :git/tag "v0.5.1"}
+                                       criterium/criterium {:mvn/version "0.4.6"}}
+
+                          :exec-fn    cognitect.test-runner.api/test
+                          :exec-args {:nses [challenge-performance-test]}}}}

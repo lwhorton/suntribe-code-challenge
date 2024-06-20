@@ -1,5 +1,6 @@
 (ns challenge.readers
-  (:import (org.threeten.extra LocalDateRange)))
+  (:import (org.threeten.extra LocalDateRange)
+           (java.time LocalDate)))
 
 (defn local-date-range [s] (LocalDateRange/parse s))
 
@@ -31,4 +32,11 @@
     (.write (local-date-range-as-iso-interval o))
     (.write "\"")))
 
-(defmethod print-method LocalDateRange [o ^java.io.Writer w] (print-dup o w))
+(defn local-date [s] (LocalDate/parse s))
+
+(defmethod print-dup LocalDate
+  [o ^java.io.Writer w]
+  (doto w
+    (.write "#st/local-date \"")
+    (.write (.toString o))
+    (.write "\"")))
